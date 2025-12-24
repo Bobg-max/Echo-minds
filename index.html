@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="Style.css">
+  <!--link rel="stylesheet" href="Style/bootstrap-5.0.2-dist/css/bootstrap.min.css"-->
+  <title>Echo Minds</title>  
+</head>
+<body>
+  <header>
+    <h1>Echo Minds <span style="font-weight:400">— 4‑Player Party Game</span></h1>
+    <!--div class="sub">Now with sound cues and configurable round length. No words allowed!</div-->
+  </header>
+
+  <div class="container">
+    <div class="panel">
+      <div class="head">
+        <h2>Scoreboard</h2>
+        <div class="row">
+          <button id="resetBtn" class="btn alt">Reset Game</button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="scores" id="scores"></div>
+        <div class="row" style="margin-top:12px; gap:16px">
+          <div>Current Pattern Keeper: <span id="pkName" class="tag"></span></div>
+          <div>Round: <span id="roundNum" class="tag">1</span></div>
+          <div>Target Score: <span class="tag">10</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="panel">
+        <div class="head">
+          <h2>Round Controls</h2>
+          <div class="row">
+            <button id="chooseSecretBtn" class="btn">PK: Choose Secret</button>
+            <button id="startEchoBtn" class="btn" disabled>Start Echo Phase</button>
+            <button id="revealBtn" class="btn bad" disabled>Reveal & Score</button>
+          </div>
+        </div>
+        <div class="body">
+          <div class="row" style="justify-content:space-between">
+            <div>
+              <div class="notice">Pass the device to the Pattern Keeper to select the hidden mood combination. After choosing, start the Echo Phase. Then each non‑PK player submits a guess (two cards). Finally, reveal & score!</div>
+              <div style="margin-top:8px; display:flex; gap:8px; align-items:center">
+                <label class="tag">Round Length (s)</label>
+                <input id="roundLen" type="number" min="10" max="120" value="30" style="width:80px; padding:6px; border-radius:8px; border:none;">
+                <label class="tag">Sounds</label>
+                <input id="soundToggle" type="checkbox" checked>
+              </div>
+            </div>
+            <div class="timer" id="timer">00:30</div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button id="nextRoundBtn" class="btn good" disabled>Next Round</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="head"><h2>Guesses</h2><span class="tag">Pick 2 emotions each</span></div>
+        <div class="body">
+          <div class="grid-players" id="guesses"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:18px">
+      <div class="head"><h2>Emotions Reference</h2><span class="tag">Use these meanings while acting</span></div>
+      <div class="body">
+        <div class="emotions" id="reference"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret Modal -->
+  <div id="secretModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="head">
+        <div><strong>Pattern Keeper:</strong> choose <em>two</em> emotions</div>
+        <button class="btn alt" onclick="closeSecretModal()">Close</button>
+      </div>
+      <div class="body">
+        <div class="notice" style="margin-bottom:10px">Tip: Tap two cards. When done, press "Lock Secret" and hand the device back.</div>
+        <div class="emotions" id="secretGrid"></div>
+        <div class="row" style="margin-top:12px; justify-content:space-between">
+          <div id="secretPicked" class="tag">0 / 2 selected</div>
+          <div class="row">
+            <button class="btn alt" onclick="clearSecret()">Clear</button>
+            <button id="lockSecretBtn" class="btn" disabled onclick="lockSecret()">Lock Secret</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guess Modal -->
+  <div id="guessModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="head">
+        <div><strong id="guessingFor"></strong>: choose <em>two</em> emotions</div>
+        <button class="btn alt" onclick="closeGuessModal()">Close</button>
+      </div>
+      <div class="body">
+        <div class="emotions" id="guessGrid"></div>
+        <div class="row" style="margin-top:12px; justify-content:space-between">
+          <div id="guessPicked" class="tag">0 / 2 selected</div>
+          <div class="row">
+            <button class="btn alt" onclick="clearGuess()">Clear</button>
+            <button id="saveGuessBtn" class="btn" disabled onclick="saveGuess()">Save Guess</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Winner Modal -->
+  <div id="winnerModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="head">
+        <div class="winner" id="winnerTitle">Winner!</div>
+        <button class="btn alt" onclick="closeWinner()">Close</button>
+      </div>
+      <div class="body">
+        <div id="winnerBody"></div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn good" onclick="resetGame()">Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div class="footer">
+    <div class="wrap">
+      <span class="tag">How to play:</span>
+      <span class="notice">1) PK chooses two emotions → 2) Start Echo Phase (act!) → 3) Players submit guesses → 4) Reveal & score → 5) Next round.</span>
+    </div>
+  </div>
+
+<script src="style.js">
+
+</script>
+</body>
+</html>

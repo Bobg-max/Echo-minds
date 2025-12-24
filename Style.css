@@ -1,0 +1,280 @@
+:root{
+      --bg:#0f1220;
+       --card:#171a2b;
+        --muted:#9aa3b2;
+         --text:#e9ecf1;
+      --accent:#7c5cff;
+       --accent-2:#00d1b2;
+        --bad:#ff4d6d;
+         --good:#28c76f;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+       --radius: 18px;
+    }
+    *
+    {
+      box-sizing:border-box
+    }
+    body
+    {
+      margin:0;
+       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        background: radial-gradient(1200px 600px at 70% -10%, #04c097be 0%, #000000 60%);
+         color:var(--text)
+    }
+    header
+    {
+      padding:22px 18px 6px;
+       text-align:center
+    }
+    h1
+    {
+      margin:0;
+      font-size:clamp(20px,3.2vw,32px);
+    }
+    .sub
+    {
+      color:var(--muted); font-size:14px; margin-top:6px;
+    }
+    .container
+    {
+      max-width:1100px; margin:18px auto 80px; padding:0 16px
+    }
+    .board
+    {
+      display:grid;
+       grid-template-columns:1.1fr 1fr;
+        gap:18px;
+    }
+    @media (max-width:950px){ .board{grid-template-columns:1fr} }
+    .panel
+    {
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+       border:1px solid rgba(255,255,255,.06); 
+       border-radius:var(--radius);
+        box-shadow:var(--shadow)}
+     .panel .head{display:flex;
+       align-items:center;
+        justify-content:space-between;
+         padding:14px 16px;
+          border-bottom:1px solid rgba(255,255,255,.08);
+        }
+    .panel .body
+    {
+      padding:14px 16px;
+    }
+    .scores
+    {
+      display:grid;
+       grid-template-columns:repeat(4,1fr);
+        gap:10px;
+    }
+    .score
+    {
+      background:var(--card);
+       border:1px solid rgba(255,255,255,.06);
+        border-radius:16px;
+         padding:12px; text-align:center;
+        }
+    .score .name
+    {
+      font-weight:700;
+    }
+    .score .role
+    {
+      font-size:12px;
+       color:var(--muted);
+        margin-top:2px;
+      }
+    .score .pts
+    {
+      font-size:26px;
+       margin-top:4px;
+      }
+    .pk
+    {
+      outline:2px solid var(--accent);
+       box-shadow:0 0 0 4px rgba(197, 12, 12, 0.15);
+      }
+    .row
+    {
+      display:flex;
+       gap:10px;
+        align-items:center;
+      }
+    .btn
+    {
+      background:linear-gradient(180deg,var(--accent),#0fc4ca);
+       color:white;
+        border:none;
+         padding:10px 14px;
+          border-radius:12px;
+           font-weight:700;
+            cursor:pointer;
+             box-shadow:0 6px 16px rgba(124,92,255,.35);
+            }
+    .btn [disabled]
+    {opacity:.5;
+       cursor:not-allowed;
+      }
+    .btn.alt
+    {
+      background:linear-gradient(180deg,#313653,#0a96a0);
+       box-shadow:none;
+      }
+    .btn.good
+    {
+      background:linear-gradient(180deg,var(--good),#22a95b);
+    }
+    .btn.bad
+    {
+      background:linear-gradient(180deg,var(--bad),#e63a59);
+    }
+    .timer
+    {
+      font-size:40px;
+       font-weight:800;
+        letter-spacing:1px;
+      }
+    .emotions
+    {
+      display:grid;
+       grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:10px;
+      }
+    .card
+    {
+      background:var(--card); border:1px solid rgba(255,255,255,.08);
+       border-radius:16px;
+        padding:10px;
+         text-align:center;
+          cursor:pointer;
+           transition: transform .12s ease;
+          }
+    .card:hover
+    {
+      transform:translateY(-2px);
+    }
+    .emo
+    {
+      font-size:32px;
+    }
+    .label
+    {
+      font-size:14px;
+       color:var(--muted);
+      }
+    .selected
+    {
+      outline:3px solid var(--accent-2);
+       background:linear-gradient(180deg, rgba(0,209,178,.12), rgba(0,209,178,.02));
+      }
+    .player-guess
+    {
+      background:rgba(255,255,255,.02);
+       border:1px dashed rgba(255,255,255,.12);
+        padding:10px;
+         border-radius:12px;
+          min-height:64px;
+        }
+    .chip
+    {display:inline-flex;
+       gap:6px;
+        align-items:center;
+         border:1px solid rgba(255,255,255,.1);
+          background:rgba(255,255,255,.06);
+           padding:6px 10px;
+            border-radius:999px;
+             margin-right:6px;
+              margin-bottom:6px;
+            }
+    .grid-players
+    {
+      display:grid;
+       grid-template-columns:repeat(3,1fr);
+        gap:12px;
+      }
+    @media (max-width:700px)
+    {
+       .grid-players
+       {
+        grid-template-columns:1fr;
+      }
+   }
+    .modal-backdrop
+    {
+      position:fixed;
+       inset:0;
+        background:rgba(7,9,18,.75);
+         display:none;
+          align-items:center;
+           justify-content:center;
+            padding:18px;
+             z-index:50;
+            }
+    .modal
+    {
+      width:min(680px,100%);
+       background:#16b679;
+        border:1px solid rgba(255,255,255,.08);
+         border-radius:20px;
+          box-shadow:var(--shadow);
+        }
+    .modal .head
+    {
+      display:flex;
+       justify-content:space-between;
+        align-items:center;
+         padding:14px 16px;
+          border-bottom:1px solid rgba(255,255,255,.08);
+   }
+ .modal .body
+ {
+   padding:16px;
+ }
+    .tag
+    {
+      font-size:12px;
+       color:var(--muted);
+        background:rgba(255,255,255,.06);
+         border:1px solid rgba(255,255,255,.08);
+          padding:4px 8px; border-radius:999px;
+    }
+    .notice
+    {
+      font-size:13px;
+       color:var(--muted);
+      }
+    .toast
+    {
+      position:fixed;
+       right:14px;
+        bottom:14px;
+         background:#22c4bc;
+          border:1px solid rgba(255,255,255,.1);
+           padding:12px 14px;
+            border-radius:12px;
+             display:none;
+              box-shadow:var(--shadow);
+            }
+    .footer
+    {
+      position:fixed;
+       left:0;
+        right:0; 
+        bottom:0;
+         padding:10px 14px;
+          display:flex;
+           justify-content:center;
+            background:linear-gradient(180deg, rgba(14,16,32,0), rgba(12, 168, 96, 0.75));
+          }
+    .footer .wrap
+    {
+      background:#121527;
+       border:1px solid rgba(255,255,255,.08);
+        border-radius:16px;
+         padding:8px 12px;
+          display:flex;
+           gap:10px;
+            align-items:center;
+          }
+  
